@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aegis-sre"
+version = "0.1.0"
+description = "Evidence-grounded, safety-gated agentic SRE platform"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+license = { file = "LICENSE" }
+authors = [{ name = "Karthik Guvvala" }]
+dependencies = [
+  "fastapi>=0.116,<1",
+  "prometheus-client>=0.22,<1",
+  "pydantic-settings>=2.10,<3",
+  "structlog>=25.4,<26",
+  "uvicorn[standard]>=0.35,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx2>=2.9,<3",
+  "mypy>=1.17,<2",
+  "pytest>=8.4,<9",
+  "pytest-cov>=6.2,<7",
+  "ruff>=0.12,<1",
+]
+
+[project.scripts]
+aegis-api = "aegis_sre.__main__:run"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aegis_sre"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers --cov=aegis_sre --cov-report=term-missing --cov-report=xml --cov-fail-under=90"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["aegis_sre"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "A", "C4", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+packages = ["aegis_sre"]
