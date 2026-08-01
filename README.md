@@ -89,6 +89,16 @@ docker compose up --build
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and
 [system-context.md](docs/architecture/system-context.md) for the system boundary.
 
+## Team collaboration
+
+The project uses one task per branch, reciprocal pull-request reviews, and an equal
+100-point ownership split between Karthik and Trivedi. The canonical upstream remains in
+Karthik's account and Trivedi works through a personal fork so the project is visible from
+both GitHub profiles.
+
+Read the [collaboration charter](docs/team-collaboration-plan.md) or download the
+[print-ready PDF](docs/AegisSRE-Team-Collaboration-Plan.pdf).
+
 ## License
 
 MIT
