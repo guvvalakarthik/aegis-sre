@@ -1,0 +1,427 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>AegisSRE Team Collaboration Plan</title><style>
+:root{--ink:#142431;--muted:#60717d;--navy:#071824;--blue:#12698c;--mint:#45d8aa;--line:#d8e2e7;--soft:#f3f7f8}
+*{box-sizing:border-box} @page{size:A4;margin:16mm 14mm 17mm} body{margin:0;color:var(--ink);font:10pt/1.43 "Segoe UI",Arial,sans-serif;background:white}
+.cover{height:260mm;padding:22mm 18mm;color:white;background:linear-gradient(145deg,#06141f,#0a3146 62%,#13736f);page-break-after:always;position:relative}
+.cover .eye{color:var(--mint);text-transform:uppercase;letter-spacing:2.2px;font-weight:700}.cover h1{font-size:36pt;line-height:1.02;margin:25mm 0 6mm;letter-spacing:-1px}.cover p{max-width:140mm;color:#d4e6eb;font-size:15pt}.meta{display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-top:45mm}.meta div{border:1px solid #ffffff33;background:#ffffff0d;border-radius:4mm;padding:6mm}.meta b{display:block;color:var(--mint);font-size:8pt;text-transform:uppercase;letter-spacing:1px;margin-bottom:2mm}
+main{max-width:182mm;margin:auto} nav{background:var(--soft);border:1px solid var(--line);border-radius:3mm;padding:5mm;margin-bottom:8mm;page-break-after:always}nav h2{border:0;margin-top:0}nav ul{columns:2}nav a{color:var(--blue);text-decoration:none}
+h1{font-size:25pt;color:var(--navy)}h2{font-size:17pt;color:var(--navy);border-bottom:2px solid var(--mint);padding-bottom:2mm;margin:9mm 0 3mm;break-after:avoid}h3{font-size:12pt;color:var(--blue);margin:6mm 0 2mm;break-after:avoid}p{margin:0 0 3mm}ul,ol{margin:2mm 0 4mm 6mm;padding-left:5mm}li{margin:1mm 0}a{color:var(--blue)}
+table{width:100%;border-collapse:collapse;margin:3mm 0 6mm;font-size:8.1pt}th{color:white;background:#12384c;text-align:left;padding:2mm}td{border-bottom:1px solid var(--line);padding:2mm;vertical-align:top}tr:nth-child(even) td{background:#f7f9fa}tr{break-inside:avoid}
+code{color:#0b5e75;background:#edf5f7;border-radius:1mm;padding:.3mm 1mm;font:8.3pt Consolas,monospace}pre{white-space:pre-wrap;background:#071824;color:#dbf7ef;padding:4mm;border-radius:2mm;font:8pt/1.4 Consolas,monospace;break-inside:avoid}pre code{background:transparent;color:inherit;padding:0}
+blockquote{margin:4mm 0;padding:4mm;border-left:4px solid #e3a73f;background:#fff7e7;color:#704900}.foot{margin-top:10mm;border-top:1px solid var(--line);padding-top:3mm;color:var(--muted);font-size:8pt}
+</style></head><body><section class="cover"><div class="eye">Engineering collaboration charter</div><h1>AegisSRE<br>Team Delivery Plan</h1><p>An equal, evidence-driven process for Guvvala Karthik and Trivedi to build a production-grade ML, deep learning, transformer, generative AI and agentic SRE platform.</p><div class="meta"><div><b>Canonical repository</b>github.com/guvvalakarthik/aegis-sre</div><div><b>Ownership</b>100 effort points each</div><div><b>Delivery</b>One task, one branch, one reviewed PR</div><div><b>Version</b>1.0 | 1 August 2026</div></div></section><main><nav><h2>Contents</h2><div class="toc">
+<ul>
+<li><a href="#aegissre-team-collaboration-plan">AegisSRE team collaboration plan</a><ul>
+<li><a href="#1-objective">1. Objective</a></li>
+<li><a href="#2-how-the-repository-appears-in-both-accounts">2. How the repository appears in both accounts</a></li>
+<li><a href="#3-equal-ownership-100-points-each">3. Equal ownership: 100 points each</a><ul>
+<li><a href="#karthik-platform-and-ml-lead">Karthik - Platform and ML lead</a></li>
+<li><a href="#trivedi-ai-systems-and-product-lead">Trivedi - AI systems and product lead</a></li>
+</ul>
+</li>
+<li><a href="#4-shared-responsibilities">4. Shared responsibilities</a></li>
+<li><a href="#5-delivery-sequence">5. Delivery sequence</a></li>
+<li><a href="#6-one-task-one-branch-one-reviewed-pr">6. One task, one branch, one reviewed PR</a></li>
+<li><a href="#7-definition-of-done">7. Definition of done</a></li>
+<li><a href="#8-github-governance">8. GitHub governance</a></li>
+<li><a href="#9-correct-contribution-credit">9. Correct contribution credit</a></li>
+<li><a href="#10-communication-cadence">10. Communication cadence</a></li>
+<li><a href="#11-v10-release-evidence">11. v1.0 release evidence</a></li>
+<li><a href="#12-immediate-actions">12. Immediate actions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><h1 id="aegissre-team-collaboration-plan">AegisSRE team collaboration plan</h1>
+<p><strong>Project:</strong> AegisSRE<br />
+<strong>Canonical repository:</strong> https://github.com/guvvalakarthik/aegis-sre<br />
+<strong>Contributors:</strong> Guvvala Karthik and Trivedi<br />
+<strong>Status:</strong> Account setup awaits Trivedi's exact GitHub username<br />
+<strong>Version:</strong> 1.0 - 2026-08-01</p>
+<h2 id="1-objective">1. Objective</h2>
+<p>Build AegisSRE as a production-grade portfolio and research project covering Kubernetes
+observability, incident simulation, classical ML, deep learning, transformers, hybrid RAG,
+agentic workflows, remediation safety, evaluation, MLOps and cloud deployment.</p>
+<p>A capability is complete only when it is implemented, reproducible, measured, documented
+and demonstrated. Technology names without executable evidence do not count.</p>
+<h2 id="2-how-the-repository-appears-in-both-accounts">2. How the repository appears in both accounts</h2>
+<p>Use one canonical upstream repository and one personal fork:</p>
+<ul>
+<li><strong>Karthik:</strong> owns <code>guvvalakarthik/aegis-sre</code>, the canonical upstream.</li>
+<li><strong>Trivedi:</strong> receives write access and owns a personal <code>aegis-sre</code> fork.</li>
+<li><strong>Result:</strong> the original appears in Karthik's repositories, the fork appears in Trivedi's
+  repositories, and accepted work is merged into one authoritative <code>main</code>.</li>
+<li><strong>Identity:</strong> each person uses an individual verified GitHub email. Never share passwords,
+  tokens, SSH keys, cloud credentials or company identities.</li>
+</ul>
+<blockquote>
+<p>Required input: replace <code>TRIVEDI_GITHUB_USERNAME</code> with Trivedi's exact GitHub login.
+Do not guess it.</p>
+</blockquote>
+<p>Karthik sends the collaborator invitation:</p>
+<pre><code class="language-bash">gh api --method PUT   repos/guvvalakarthik/aegis-sre/collaborators/TRIVEDI_GITHUB_USERNAME   -f permission=push
+</code></pre>
+<p>After accepting, Trivedi creates and configures the fork:</p>
+<pre><code class="language-bash">gh repo fork guvvalakarthik/aegis-sre --clone=false
+git clone https://github.com/TRIVEDI_GITHUB_USERNAME/aegis-sre.git
+cd aegis-sre
+git remote add upstream https://github.com/guvvalakarthik/aegis-sre.git
+git fetch upstream
+git remote -v
+</code></pre>
+<p>The fork uses <code>origin</code>; the canonical repository uses <code>upstream</code>.</p>
+<h2 id="3-equal-ownership-100-points-each">3. Equal ownership: 100 points each</h2>
+<p>Effort points represent expected engineering difficulty, not lines of code. Any reassignment
+must preserve the final 100/100 split.</p>
+<h3 id="karthik-platform-and-ml-lead">Karthik - Platform and ML lead</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Work package</th>
+<th>Task branch</th>
+<th style="text-align: right;">Points</th>
+<th>Acceptance evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K1</td>
+<td>API, CI and security foundation</td>
+<td><code>agent/project-foundation</code></td>
+<td style="text-align: right;">10</td>
+<td>Merged PR, typing, tests, container</td>
+</tr>
+<tr>
+<td>K2</td>
+<td>Kubernetes and OpenTelemetry testbed</td>
+<td><code>karthik/02-observability-testbed</code></td>
+<td style="text-align: right;">15</td>
+<td>Pinned chart and live telemetry</td>
+</tr>
+<tr>
+<td>K3</td>
+<td>Telemetry ingestion and schemas</td>
+<td><code>karthik/03-telemetry-pipeline</code></td>
+<td style="text-align: right;">15</td>
+<td>Normalized signals with provenance</td>
+</tr>
+<tr>
+<td>K4</td>
+<td>Reproducible incident laboratory</td>
+<td><code>karthik/04-incident-lab</code></td>
+<td style="text-align: right;">15</td>
+<td>Ground truth, seeds and replay</td>
+</tr>
+<tr>
+<td>K5</td>
+<td>Classical ML baselines</td>
+<td><code>karthik/05-classical-ml</code></td>
+<td style="text-align: right;">15</td>
+<td>Rules, Isolation Forest and XGBoost</td>
+</tr>
+<tr>
+<td>K6</td>
+<td>Model-serving and control-plane APIs</td>
+<td><code>karthik/06-model-serving</code></td>
+<td style="text-align: right;">10</td>
+<td>Versioned, authenticated inference</td>
+</tr>
+<tr>
+<td>K7</td>
+<td>MLOps, model registry and drift</td>
+<td><code>karthik/07-mlops</code></td>
+<td style="text-align: right;">10</td>
+<td>Lineage, promotion and rollback</td>
+</tr>
+<tr>
+<td>K8</td>
+<td>Cloud infrastructure and deployment</td>
+<td><code>karthik/08-cloud-deployment</code></td>
+<td style="text-align: right;">10</td>
+<td>Reproducible staging environment</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Total</strong></td>
+<td></td>
+<td style="text-align: right;"><strong>100</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="trivedi-ai-systems-and-product-lead">Trivedi - AI systems and product lead</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Work package</th>
+<th>Task branch</th>
+<th style="text-align: right;">Points</th>
+<th>Acceptance evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1</td>
+<td>Dataset validation and feature contracts</td>
+<td><code>trivedi/01-data-quality</code></td>
+<td style="text-align: right;">10</td>
+<td>Leakage checks and time-aware splits</td>
+</tr>
+<tr>
+<td>T2</td>
+<td>Deep-learning anomaly baselines</td>
+<td><code>trivedi/02-deep-learning</code></td>
+<td style="text-align: right;">15</td>
+<td>Autoencoder and TCN/LSTM benchmark</td>
+</tr>
+<tr>
+<td>T3</td>
+<td>Time-series and log transformers</td>
+<td><code>trivedi/03-transformers</code></td>
+<td style="text-align: right;">20</td>
+<td>PatchTST, log encoder and ablations</td>
+</tr>
+<tr>
+<td>T4</td>
+<td>Hybrid RAG and evidence citations</td>
+<td><code>trivedi/04-hybrid-rag</code></td>
+<td style="text-align: right;">15</td>
+<td>Hybrid retrieval and retrieval metrics</td>
+</tr>
+<tr>
+<td>T5</td>
+<td>Topology and incident knowledge graph</td>
+<td><code>trivedi/05-knowledge-graph</code></td>
+<td style="text-align: right;">10</td>
+<td>Service, trace and deploy relationships</td>
+</tr>
+<tr>
+<td>T6</td>
+<td>Typed agent workflow</td>
+<td><code>trivedi/06-agent-workflow</code></td>
+<td style="text-align: right;">15</td>
+<td>State, budgets, retries and evidence</td>
+</tr>
+<tr>
+<td>T7</td>
+<td>Safety critic and remediation sandbox</td>
+<td><code>trivedi/07-safety-sandbox</code></td>
+<td style="text-align: right;">10</td>
+<td>Policy, approval, canary and rollback</td>
+</tr>
+<tr>
+<td>T8</td>
+<td>Incident and evaluation dashboard</td>
+<td><code>trivedi/08-dashboard</code></td>
+<td style="text-align: right;">5</td>
+<td>Topology, evidence and benchmark UI</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Total</strong></td>
+<td></td>
+<td style="text-align: right;"><strong>100</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-shared-responsibilities">4. Shared responsibilities</h2>
+<p>Both contributors jointly own:</p>
+<ul>
+<li>Architecture decisions and threat modelling</li>
+<li>Incident ground-truth definitions</li>
+<li>Benchmark design and result interpretation</li>
+<li>Review of every pull request from the other contributor</li>
+<li>Adversarial and safety evaluation</li>
+<li>Final system integration</li>
+<li>Technical report, demo video and interview preparation</li>
+</ul>
+<p>Karthik must be able to explain Trivedi's AI architecture. Trivedi must be able to explain
+Karthik's platform, data and MLOps architecture.</p>
+<h2 id="5-delivery-sequence">5. Delivery sequence</h2>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Karthik</th>
+<th>Trivedi</th>
+<th>Integration gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Repository and rules</td>
+<td>Fork, identity and environment</td>
+<td>Both can branch and run CI</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Kubernetes/OTel testbed</td>
+<td>Data-quality contracts</td>
+<td>Stable telemetry and schemas</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Telemetry pipeline and incident lab</td>
+<td>DL anomaly baselines</td>
+<td>Versioned dataset v1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Classical ML baselines</td>
+<td>Transformers</td>
+<td>Reproducible benchmark v1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Model-serving APIs</td>
+<td>Hybrid RAG and graph</td>
+<td>Evidence-linked diagnosis</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MLOps and drift</td>
+<td>Agent workflow and safety</td>
+<td>Controlled incident recovery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Cloud staging deployment</td>
+<td>Dashboard</td>
+<td>End-to-end staging demo</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Cost, load and reliability tests</td>
+<td>UX and evaluation views</td>
+<td>Release candidate</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Joint report, demo and defence</td>
+<td>Joint report, demo and defence</td>
+<td>v1.0 release</td>
+</tr>
+</tbody>
+</table>
+<p>A downstream sprint begins only after its integration gate passes on canonical <code>main</code>.</p>
+<h2 id="6-one-task-one-branch-one-reviewed-pr">6. One task, one branch, one reviewed PR</h2>
+<p>Never implement directly on <code>main</code>.</p>
+<p>Start a task from canonical main:</p>
+<pre><code class="language-bash">git fetch upstream
+git switch main
+git merge --ff-only upstream/main
+git switch -c trivedi/03-transformers
+</code></pre>
+<p>Karthik uses a <code>karthik/</code> prefix. Agent-assisted branches use <code>agent/</code> and still require a
+human owner and reviewer.</p>
+<p>Before pushing:</p>
+<pre><code class="language-bash">ruff format --check .
+ruff check .
+mypy src
+pytest
+git diff --check
+</code></pre>
+<p>Push and open a pull request:</p>
+<pre><code class="language-bash">git push -u origin trivedi/03-transformers
+gh pr create --repo guvvalakarthik/aegis-sre   --base main   --head TRIVEDI_GITHUB_USERNAME:trivedi/03-transformers
+</code></pre>
+<p>Every pull request must:</p>
+<ul>
+<li>Link one primary issue/work package.</li>
+<li>Explain what changed, why and relevant trade-offs.</li>
+<li>Include real tests tied to acceptance criteria; no illustrative test cases.</li>
+<li>Include benchmark artifact IDs for model or data changes.</li>
+<li>Describe security, failure and rollback behavior.</li>
+<li>Receive approval from the other contributor.</li>
+<li>Pass every required CI check and resolve every conversation.</li>
+<li>Use squash merge after the collaboration ruleset is enabled.</li>
+<li>Preserve the task branch until the sprint release tag.</li>
+</ul>
+<h2 id="7-definition-of-done">7. Definition of done</h2>
+<ul>
+<li>[ ] Acceptance criteria are executable and pass.</li>
+<li>[ ] Formatting, linting and strict type checking pass.</li>
+<li>[ ] Unit, integration and end-to-end tests cover real behavior.</li>
+<li>[ ] Data and model lineage is recorded.</li>
+<li>[ ] Evaluation uses held-out, time-aware data where applicable.</li>
+<li>[ ] Metrics are generated by scripts, not typed into documentation.</li>
+<li>[ ] Secrets and personal data are absent from code, logs and artifacts.</li>
+<li>[ ] Failure behavior and rollback are tested.</li>
+<li>[ ] Documentation matches implemented behavior and limitations.</li>
+<li>[ ] The other contributor approved the pull request.</li>
+<li>[ ] CI passed on the exact commit merged to <code>main</code>.</li>
+</ul>
+<p>Placeholders, fabricated metrics, fake model output, empty abstractions, direct pushes and
+tests that only assert hard-coded examples are incomplete.</p>
+<h2 id="8-github-governance">8. GitHub governance</h2>
+<p>Create a GitHub Project with:</p>
+<ol>
+<li>Backlog</li>
+<li>Ready</li>
+<li>In progress</li>
+<li>Review</li>
+<li>Validation</li>
+<li>Done</li>
+</ol>
+<p>Every issue records owner, package ID, points, dependencies, acceptance criteria, required
+tests, documentation, security considerations and required evidence.</p>
+<p>Enable a <code>main</code> ruleset that:</p>
+<ul>
+<li>Requires a pull request and one reciprocal approval</li>
+<li>Dismisses stale approvals</li>
+<li>Requires all CI checks and conversation resolution</li>
+<li>Blocks force pushes and branch deletion</li>
+<li>Allows emergency bypass only for a documented incident</li>
+</ul>
+<h2 id="9-correct-contribution-credit">9. Correct contribution credit</h2>
+<ul>
+<li>Configure repository-local name and a verified GitHub email.</li>
+<li>The person doing the substantive work authors the package commits.</li>
+<li>Use <code>Co-authored-by</code> only when both people actually wrote the commit.</li>
+<li>Merge work into canonical <code>main</code>.</li>
+<li>Never commit from shared, company or unrelated identities.</li>
+<li>Keep Trivedi's fork synchronized with <code>upstream/main</code>.</li>
+</ul>
+<pre><code class="language-bash">git config --local user.name &quot;TRIVEDI_DISPLAY_NAME&quot;
+git config --local user.email &quot;TRIVEDI_VERIFIED_GITHUB_EMAIL&quot;
+</code></pre>
+<h2 id="10-communication-cadence">10. Communication cadence</h2>
+<ul>
+<li><strong>Daily async:</strong> completed, next action, blocker and evidence link.</li>
+<li><strong>Twice weekly:</strong> integrate both active branches in a clean environment.</li>
+<li><strong>Weekly:</strong> architecture/security review and ADR updates.</li>
+<li><strong>Sprint close:</strong> tag source, dataset, models and release notes.</li>
+<li><strong>One-day blocker rule:</strong> a blocker lasting one workday becomes a GitHub issue.</li>
+</ul>
+<p>GitHub Issues, ADRs and PR comments are the source of truth. Chat coordinates work but does
+not replace permanent engineering evidence.</p>
+<h2 id="11-v10-release-evidence">11. v1.0 release evidence</h2>
+<ul>
+<li>Reproducible local and staging deployment</li>
+<li>At least 25 deterministic incident scenarios</li>
+<li>Dataset card and model cards</li>
+<li>ML, DL and transformer comparisons</li>
+<li>Retrieval and citation evaluation</li>
+<li>Root-cause Top-1 and Top-3 metrics</li>
+<li>Recovery success and unsafe-action metrics</li>
+<li>Latency and cost measurements</li>
+<li>Threat model and adversarial evaluation</li>
+<li>Architecture diagrams and runbooks</li>
+<li>Public dashboard or recorded end-to-end demo</li>
+<li>Technical report with honest limitations</li>
+<li>Tagged source, dataset version and model versions</li>
+</ul>
+<h2 id="12-immediate-actions">12. Immediate actions</h2>
+<ol>
+<li>Provide Trivedi's exact GitHub username.</li>
+<li>Send and accept write-collaborator access.</li>
+<li>Create Trivedi's personal fork.</li>
+<li>Configure verified repository-local identities.</li>
+<li>Enable the canonical <code>main</code> ruleset and required CI.</li>
+<li>Create the Project board and all K/T work-package issues.</li>
+<li>Assign K2 to Karthik and T1 to Trivedi.</li>
+<li>Hold the first integration review after both first PRs pass.</li>
+</ol><div class="foot">AegisSRE collaboration charter | Canonical source: docs/team-collaboration-plan.md</div></main></body></html>
