@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from typing import Mapping, Sequence
 
 
@@ -88,6 +89,7 @@ def validate_dataset(
     dataset_version: str,
     max_age_seconds: float | None = None,
     now_timestamp: str | None = None,
+    allowed_fields: Sequence[str] | None = None,
 ) -> QualityReport:
     issues: list[QualityIssue] = []
     if not rows:
@@ -96,6 +98,10 @@ def validate_dataset(
     missing_fields = set(required_fields) - fields
     if missing_fields:
         issues.append(QualityIssue("schema", "error", "required fields are missing", tuple(sorted(missing_fields))))
+    if allowed_fields is not None:
+        unexpected = fields - set(allowed_fields)
+        if unexpected:
+            issues.append(QualityIssue("schema", "error", "unexpected fields are present", tuple(sorted(unexpected))))
     for index, row in enumerate(rows):
         missing = set(required_fields) - set(row)
         if missing:
@@ -103,9 +109,17 @@ def validate_dataset(
         if timestamp_field in row and not str(row[timestamp_field]):
             issues.append(QualityIssue("freshness", "error", f"row {index} has an empty timestamp"))
     if max_age_seconds is not None and now_timestamp is not None:
-        # ISO-8601 timestamps are compared lexically only after callers normalize timezone format.
-        if any(str(row.get(timestamp_field, "")) > now_timestamp for row in rows):
-            issues.append(QualityIssue("freshness", "error", "future-dated rows detected"))
+        try:
+            now = datetime.fromisoformat(now_timestamp.replace("Z", "+00:00")).astimezone(timezone.utc)
+            for row in rows:
+                observed = datetime.fromisoformat(str(row.get(timestamp_field, "")).replace("Z", "+00:00")).astimezone(timezone.utc)
+                age = (now - observed).total_seconds()
+                if age < 0:
+                    issues.append(QualityIssue("freshness", "error", "future-dated rows detected"))
+                elif age > max_age_seconds:
+                    issues.append(QualityIssue("freshness", "error", "stale rows exceed freshness limit"))
+        except (TypeError, ValueError):
+            issues.append(QualityIssue("freshness", "error", "timestamps are not valid ISO-8601 values"))
     leakage = detect_leakage(rows, feature_fields=feature_fields, label_field=label_field, timestamp_field=timestamp_field, group_field=group_field)
     issues.extend(leakage)
     labels = [_number(row.get(label_field)) for row in rows]
