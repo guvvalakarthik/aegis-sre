@@ -1,0 +1,45 @@
+name: Feature
+description: Propose a product or platform capability with measurable acceptance criteria.
+title: "[FEATURE] "
+labels:
+  - type:feature
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe one bounded capability. Do not include secrets or sensitive incident data.
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: What user or operator outcome should exist when this is complete?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and non-goals
+      description: Define the implementation boundary and explicit exclusions.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Use executable, observable criteria.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Required validation
+      description: List tests, benchmarks, documentation, and security evidence.
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Owner and task branch
+      placeholder: "@owner — owner/task-branch"
+    validations:
+      required: true

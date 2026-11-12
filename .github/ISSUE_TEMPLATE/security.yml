@@ -1,0 +1,38 @@
+name: Security
+description: Report a suspected security or safety vulnerability privately when possible.
+title: "[SECURITY] "
+labels:
+  - type:security
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not disclose an exploitable vulnerability publicly. Follow SECURITY.md for private reporting.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Give a redacted, non-exploitable description.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Describe affected trust boundaries, data, and capabilities.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Safe reproduction
+      description: Provide the minimum non-destructive reproduction or say why it cannot be public.
+    validations:
+      required: true
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: Mitigation and disclosure
+      description: Record temporary mitigation and whether private disclosure is required.
+    validations:
+      required: true
