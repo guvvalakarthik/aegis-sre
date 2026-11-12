@@ -13,6 +13,8 @@ from starlette.middleware.base import RequestResponseEndpoint
 
 from aegis_sre import __version__
 from aegis_sre.api.routes.health import router as health_router
+from aegis_sre.api.routes.dashboard import router as dashboard_router
+from aegis_sre.dashboard import InMemoryDashboardStore
 from aegis_sre.logging import configure_logging
 from aegis_sre.settings import Settings, get_settings
 
@@ -57,6 +59,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     )
     app.state.ready = False
     app.state.settings = runtime_settings
+    app.state.dashboard_store = InMemoryDashboardStore()
     app.add_middleware(
         CORSMiddleware,
         allow_origins=runtime_settings.cors_origins,
@@ -86,4 +89,5 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
     app.include_router(health_router)
+    app.include_router(dashboard_router)
     return app
