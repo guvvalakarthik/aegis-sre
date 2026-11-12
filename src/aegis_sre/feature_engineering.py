@@ -99,7 +99,14 @@ def extract_features(
         "trace_latency_p95": _percentile(trace_latencies, 0.95),
         "trace_error_rate": error_spans / len(trace_latencies) if trace_latencies else 0.0,
     }
-    missing = frozenset(name for name, value in values.items() if value == 0.0)
+    observed = set()
+    if metrics:
+        observed.update({"metric_mean", "metric_p95"})
+    if log_count:
+        observed.update({"log_count", "log_error_rate"})
+    if trace_latencies:
+        observed.update({"trace_latency_p50", "trace_latency_p95", "trace_error_rate"})
+    missing = frozenset(name for name in values if name not in observed)
     lineage = hashlib.sha256(
         json.dumps(
             {"schema": SCHEMA_VERSION, "code": code_version, "records": accepted},
