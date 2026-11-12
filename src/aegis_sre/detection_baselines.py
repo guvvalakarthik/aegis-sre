@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from math import sqrt
 from statistics import mean, pstdev
 from typing import Iterable
 
@@ -29,7 +28,11 @@ def _detection(index: int, score: float, explanation: str) -> Detection:
 
 
 def static_threshold(values: list[float], *, upper: float) -> list[Detection]:
-    return [_detection(i, value - upper, f"value {value:.4g} exceeded threshold {upper:.4g}") for i, value in enumerate(values) if value > upper]
+    return [
+        _detection(i, value - upper, f"value {value:.4g} exceeded threshold {upper:.4g}")
+        for i, value in enumerate(values)
+        if value > upper
+    ]
 
 
 def rolling_zscore(values: list[float], *, window: int = 20, threshold: float = 3.0) -> list[Detection]:
@@ -60,12 +63,7 @@ def ewma(values: list[float], *, alpha: float = 0.2, threshold: float = 3.0) -> 
     return detections
 
 
-def seasonal_baseline(
-    values: list[float],
-    *,
-    period: int,
-    threshold: float,
-) -> list[Detection]:
+def seasonal_baseline(values: list[float], *, period: int, threshold: float) -> list[Detection]:
     if period < 1:
         raise ValueError("period must be positive")
     detections: list[Detection] = []
@@ -104,12 +102,15 @@ def evaluate(
     actual = {index for index, label in enumerate(labels) if label}
     true_positive = len(predicted & actual)
     false_positive = len(predicted - actual)
-    false_negative = len(actual - predicted)
     precision = true_positive / len(predicted) if predicted else 0.0
     recall = true_positive / len(actual) if actual else 0.0
     f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
     hours = len(labels) * sample_interval_seconds / 3600
-    delays = [index - min((candidate for candidate in predicted if candidate <= index), default=index) for index in actual if predicted]
+    delays = [
+        index - max(candidate for candidate in predicted if candidate <= index)
+        for index in actual
+        if any(candidate <= index for candidate in predicted)
+    ]
     return BaselineMetrics(
         precision=precision,
         recall=recall,
