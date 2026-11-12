@@ -1,0 +1,34 @@
+name: Research
+description: Define a reproducible research or evaluation task.
+title: "[RESEARCH] "
+labels:
+  - type:research
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+      description: State the falsifiable question or hypothesis.
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Data and methodology
+      description: Specify versions, splits, seeds, baselines, and leakage controls.
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Metrics and acceptance criteria
+      description: Define measurable success, failure, and abstention conditions.
+    validations:
+      required: true
+  - type: textarea
+    id: reproducibility
+    attributes:
+      label: Reproducibility evidence
+      description: List commands, artifact IDs, environment, and expected outputs.
+    validations:
+      required: true
