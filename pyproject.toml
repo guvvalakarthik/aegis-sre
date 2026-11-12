@@ -26,6 +26,11 @@ dev = [
   "pytest-cov>=6.2,<7",
   "ruff>=0.12,<1",
 ]
+ml = [
+  "numpy>=2.2,<3",
+  "scikit-learn>=1.6,<2",
+  "statsmodels>=0.14,<1",
+]
 
 [project.scripts]
 aegis-api = "aegis_sre.__main__:run"
