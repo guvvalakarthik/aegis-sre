@@ -100,7 +100,7 @@ def build_model(config: TransformerTelemetryConfig) -> Any:
 def attention_attribution(model: Any, values: Any) -> Any:
     model.eval()
     _, attention = model(values, return_attention=True)
-    return attention.detach().mean(dim=(0, 2))
+    return attention.detach().mean(dim=(0, 1, 2))
 
 
 def reconstruction_errors(model: Any, values: Any) -> Any:
