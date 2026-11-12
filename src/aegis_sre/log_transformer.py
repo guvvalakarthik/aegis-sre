@@ -14,7 +14,7 @@ UNK_ID = 1
 
 _SECRET = re.compile(
     r"(?i)\b(?:authorization|api[_-]?key|access[_-]?token|refresh[_-]?token|"
-    r"password|passwd|secret|credential)\s*[:=]\s*[^\s,;]+"
+    r"password|passwd|secret|credential)\s*[:=]\s*(?:\S+\s+)?\S+"
 )
 _UUID = re.compile(r"\b[0-9a-f]{8}-[0-9a-f-]{27,}\b", re.I)
 _IP = re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b")
