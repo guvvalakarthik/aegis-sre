@@ -1,0 +1,6 @@
+# Default owners for every file in the repository.
+* @guvvalakarthik @trivedi2005
+
+# Security-sensitive workflow and policy files require both owners.
+.github/ @guvvalakarthik @trivedi2005
+SECURITY.md @guvvalakarthik @trivedi2005
