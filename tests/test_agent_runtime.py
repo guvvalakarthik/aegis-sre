@@ -64,3 +64,20 @@ def test_invalid_arguments_and_budget_are_enforced() -> None:
     runtime.consume_tokens(1)
     with pytest.raises(RuntimeError, match="budget"):
         runtime.consume_tokens(1)
+
+
+def test_timeout_is_recorded_and_does_not_return_success() -> None:
+    import time
+    from aegis_sre.agent_runtime import IncidentRuntime, MemoryCheckpointStore, RuntimeBudget, ToolSpec
+
+    def slow(_: object):
+        time.sleep(0.2)
+        return "late"
+
+    runtime = IncidentRuntime("inc-timeout", MemoryCheckpointStore(), RuntimeBudget(100, 10.0, 1, 0))
+    spec = ToolSpec("read", frozenset({"operator"}), frozenset({"telemetry:read"}), validator, slow)
+    with pytest.raises(RuntimeError, match="tool failed"):
+        runtime.execute_tool(
+            spec, {"query": "x"}, actor_roles=frozenset({"operator"}),
+            idempotency_key="timeout", timeout_seconds=0.01,
+        )
