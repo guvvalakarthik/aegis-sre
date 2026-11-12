@@ -1,0 +1,456 @@
+{
+  "schema_version": "incident-catalog.v1",
+  "generated_by": "catalog-definition",
+  "scenarios": [
+    {
+      "id": "01-cpu-stress",
+      "category": "resource",
+      "root_cause": "cpu-stress",
+      "target_service": "catalog-service",
+      "namespace": "aegis-lab",
+      "seed": 91001,
+      "expected_affected_services": [
+        "catalog-service"
+      ],
+      "parameters": {
+        "duration_seconds": 67,
+        "intensity": 4
+      },
+      "remediation": "restore-cpu-stress",
+      "cleanup": "cleanup-cpu-stress",
+      "requires_ui": false
+    },
+    {
+      "id": "02-memory-pressure",
+      "category": "resource",
+      "root_cause": "memory-pressure",
+      "target_service": "checkout",
+      "namespace": "aegis-lab",
+      "seed": 91002,
+      "expected_affected_services": [
+        "checkout"
+      ],
+      "parameters": {
+        "duration_seconds": 74,
+        "intensity": 2
+      },
+      "remediation": "restore-memory-pressure",
+      "cleanup": "cleanup-memory-pressure",
+      "requires_ui": false
+    },
+    {
+      "id": "03-disk-fill",
+      "category": "resource",
+      "root_cause": "disk-fill",
+      "target_service": "cart",
+      "namespace": "aegis-lab",
+      "seed": 91003,
+      "expected_affected_services": [
+        "cart"
+      ],
+      "parameters": {
+        "duration_seconds": 81,
+        "intensity": 5
+      },
+      "remediation": "restore-disk-fill",
+      "cleanup": "cleanup-disk-fill",
+      "requires_ui": false
+    },
+    {
+      "id": "04-cpu-throttle",
+      "category": "resource",
+      "root_cause": "cpu-throttle",
+      "target_service": "frontend",
+      "namespace": "aegis-lab",
+      "seed": 91004,
+      "expected_affected_services": [
+        "frontend"
+      ],
+      "parameters": {
+        "duration_seconds": 88,
+        "intensity": 3
+      },
+      "remediation": "restore-cpu-throttle",
+      "cleanup": "cleanup-cpu-throttle",
+      "requires_ui": false
+    },
+    {
+      "id": "05-process-crash",
+      "category": "resource",
+      "root_cause": "process-crash",
+      "target_service": "payment",
+      "namespace": "aegis-lab",
+      "seed": 91005,
+      "expected_affected_services": [
+        "payment"
+      ],
+      "parameters": {
+        "duration_seconds": 95,
+        "intensity": 1
+      },
+      "remediation": "restore-process-crash",
+      "cleanup": "cleanup-process-crash",
+      "requires_ui": false
+    },
+    {
+      "id": "06-network-latency",
+      "category": "network",
+      "root_cause": "network-latency",
+      "target_service": "checkout",
+      "namespace": "aegis-lab",
+      "seed": 91006,
+      "expected_affected_services": [
+        "checkout"
+      ],
+      "parameters": {
+        "duration_seconds": 102,
+        "intensity": 4
+      },
+      "remediation": "restore-network-latency",
+      "cleanup": "cleanup-network-latency",
+      "requires_ui": false
+    },
+    {
+      "id": "07-packet-loss",
+      "category": "network",
+      "root_cause": "packet-loss",
+      "target_service": "frontend",
+      "namespace": "aegis-lab",
+      "seed": 91007,
+      "expected_affected_services": [
+        "frontend"
+      ],
+      "parameters": {
+        "duration_seconds": 109,
+        "intensity": 2
+      },
+      "remediation": "restore-packet-loss",
+      "cleanup": "cleanup-packet-loss",
+      "requires_ui": false
+    },
+    {
+      "id": "08-dns-failure",
+      "category": "network",
+      "root_cause": "dns-failure",
+      "target_service": "currency",
+      "namespace": "aegis-lab",
+      "seed": 91008,
+      "expected_affected_services": [
+        "currency"
+      ],
+      "parameters": {
+        "duration_seconds": 116,
+        "intensity": 5
+      },
+      "remediation": "restore-dns-failure",
+      "cleanup": "cleanup-dns-failure",
+      "requires_ui": false
+    },
+    {
+      "id": "09-dependency-timeout",
+      "category": "network",
+      "root_cause": "dependency-timeout",
+      "target_service": "payment",
+      "namespace": "aegis-lab",
+      "seed": 91009,
+      "expected_affected_services": [
+        "payment"
+      ],
+      "parameters": {
+        "duration_seconds": 123,
+        "intensity": 3
+      },
+      "remediation": "restore-dependency-timeout",
+      "cleanup": "cleanup-dependency-timeout",
+      "requires_ui": false
+    },
+    {
+      "id": "10-network-partition",
+      "category": "network",
+      "root_cause": "network-partition",
+      "target_service": "shipping",
+      "namespace": "aegis-lab",
+      "seed": 91010,
+      "expected_affected_services": [
+        "shipping"
+      ],
+      "parameters": {
+        "duration_seconds": 130,
+        "intensity": 1
+      },
+      "remediation": "restore-network-partition",
+      "cleanup": "cleanup-network-partition",
+      "requires_ui": false
+    },
+    {
+      "id": "11-connection-pool-exhaustion",
+      "category": "datastore",
+      "root_cause": "connection-pool-exhaustion",
+      "target_service": "checkout",
+      "namespace": "aegis-lab",
+      "seed": 91011,
+      "expected_affected_services": [
+        "checkout"
+      ],
+      "parameters": {
+        "duration_seconds": 137,
+        "intensity": 4
+      },
+      "remediation": "restore-connection-pool-exhaustion",
+      "cleanup": "cleanup-connection-pool-exhaustion",
+      "requires_ui": false
+    },
+    {
+      "id": "12-slow-database-query",
+      "category": "datastore",
+      "root_cause": "slow-database-query",
+      "target_service": "cart",
+      "namespace": "aegis-lab",
+      "seed": 91012,
+      "expected_affected_services": [
+        "cart"
+      ],
+      "parameters": {
+        "duration_seconds": 144,
+        "intensity": 2
+      },
+      "remediation": "restore-slow-database-query",
+      "cleanup": "cleanup-slow-database-query",
+      "requires_ui": false
+    },
+    {
+      "id": "13-redis-unavailable",
+      "category": "datastore",
+      "root_cause": "redis-unavailable",
+      "target_service": "currency",
+      "namespace": "aegis-lab",
+      "seed": 91013,
+      "expected_affected_services": [
+        "currency"
+      ],
+      "parameters": {
+        "duration_seconds": 151,
+        "intensity": 5
+      },
+      "remediation": "restore-redis-unavailable",
+      "cleanup": "cleanup-redis-unavailable",
+      "requires_ui": false
+    },
+    {
+      "id": "14-kafka-consumer-lag",
+      "category": "datastore",
+      "root_cause": "kafka-consumer-lag",
+      "target_service": "payment",
+      "namespace": "aegis-lab",
+      "seed": 91014,
+      "expected_affected_services": [
+        "payment"
+      ],
+      "parameters": {
+        "duration_seconds": 158,
+        "intensity": 3
+      },
+      "remediation": "restore-kafka-consumer-lag",
+      "cleanup": "cleanup-kafka-consumer-lag",
+      "requires_ui": false
+    },
+    {
+      "id": "15-deadlock",
+      "category": "datastore",
+      "root_cause": "deadlock",
+      "target_service": "catalog-service",
+      "namespace": "aegis-lab",
+      "seed": 91015,
+      "expected_affected_services": [
+        "catalog-service"
+      ],
+      "parameters": {
+        "duration_seconds": 165,
+        "intensity": 1
+      },
+      "remediation": "restore-deadlock",
+      "cleanup": "cleanup-deadlock",
+      "requires_ui": false
+    },
+    {
+      "id": "16-bad-image",
+      "category": "deployment",
+      "root_cause": "bad-image",
+      "target_service": "frontend",
+      "namespace": "aegis-lab",
+      "seed": 91016,
+      "expected_affected_services": [
+        "frontend"
+      ],
+      "parameters": {
+        "duration_seconds": 172,
+        "intensity": 4
+      },
+      "remediation": "restore-bad-image",
+      "cleanup": "cleanup-bad-image",
+      "requires_ui": false
+    },
+    {
+      "id": "17-invalid-environment",
+      "category": "deployment",
+      "root_cause": "invalid-environment",
+      "target_service": "checkout",
+      "namespace": "aegis-lab",
+      "seed": 91017,
+      "expected_affected_services": [
+        "checkout"
+      ],
+      "parameters": {
+        "duration_seconds": 179,
+        "intensity": 2
+      },
+      "remediation": "restore-invalid-environment",
+      "cleanup": "cleanup-invalid-environment",
+      "requires_ui": false
+    },
+    {
+      "id": "18-secret-expiry",
+      "category": "deployment",
+      "root_cause": "secret-expiry",
+      "target_service": "payment",
+      "namespace": "aegis-lab",
+      "seed": 91018,
+      "expected_affected_services": [
+        "payment"
+      ],
+      "parameters": {
+        "duration_seconds": 66,
+        "intensity": 5
+      },
+      "remediation": "restore-secret-expiry",
+      "cleanup": "cleanup-secret-expiry",
+      "requires_ui": false
+    },
+    {
+      "id": "19-api-contract-break",
+      "category": "deployment",
+      "root_cause": "api-contract-break",
+      "target_service": "currency",
+      "namespace": "aegis-lab",
+      "seed": 91019,
+      "expected_affected_services": [
+        "currency"
+      ],
+      "parameters": {
+        "duration_seconds": 73,
+        "intensity": 3
+      },
+      "remediation": "restore-api-contract-break",
+      "cleanup": "cleanup-api-contract-break",
+      "requires_ui": false
+    },
+    {
+      "id": "20-rollback-regression",
+      "category": "deployment",
+      "root_cause": "rollback-regression",
+      "target_service": "shipping",
+      "namespace": "aegis-lab",
+      "seed": 91020,
+      "expected_affected_services": [
+        "shipping"
+      ],
+      "parameters": {
+        "duration_seconds": 80,
+        "intensity": 1
+      },
+      "remediation": "restore-rollback-regression",
+      "cleanup": "cleanup-rollback-regression",
+      "requires_ui": false
+    },
+    {
+      "id": "21-traffic-spike",
+      "category": "traffic",
+      "root_cause": "traffic-spike",
+      "target_service": "frontend",
+      "namespace": "aegis-lab",
+      "seed": 91021,
+      "expected_affected_services": [
+        "frontend"
+      ],
+      "parameters": {
+        "duration_seconds": 87,
+        "intensity": 4
+      },
+      "remediation": "restore-traffic-spike",
+      "cleanup": "cleanup-traffic-spike",
+      "requires_ui": false
+    },
+    {
+      "id": "22-retry-storm",
+      "category": "traffic",
+      "root_cause": "retry-storm",
+      "target_service": "checkout",
+      "namespace": "aegis-lab",
+      "seed": 91022,
+      "expected_affected_services": [
+        "checkout"
+      ],
+      "parameters": {
+        "duration_seconds": 94,
+        "intensity": 2
+      },
+      "remediation": "restore-retry-storm",
+      "cleanup": "cleanup-retry-storm",
+      "requires_ui": false
+    },
+    {
+      "id": "23-rate-limit",
+      "category": "traffic",
+      "root_cause": "rate-limit",
+      "target_service": "payment",
+      "namespace": "aegis-lab",
+      "seed": 91023,
+      "expected_affected_services": [
+        "payment"
+      ],
+      "parameters": {
+        "duration_seconds": 101,
+        "intensity": 5
+      },
+      "remediation": "restore-rate-limit",
+      "cleanup": "cleanup-rate-limit",
+      "requires_ui": false
+    },
+    {
+      "id": "24-dependency-failure",
+      "category": "traffic",
+      "root_cause": "dependency-failure",
+      "target_service": "cart",
+      "namespace": "aegis-lab",
+      "seed": 91024,
+      "expected_affected_services": [
+        "cart"
+      ],
+      "parameters": {
+        "duration_seconds": 108,
+        "intensity": 3
+      },
+      "remediation": "restore-dependency-failure",
+      "cleanup": "cleanup-dependency-failure",
+      "requires_ui": false
+    },
+    {
+      "id": "25-multi-service-cascade",
+      "category": "traffic",
+      "root_cause": "multi-service-cascade",
+      "target_service": "shipping",
+      "namespace": "aegis-lab",
+      "seed": 91025,
+      "expected_affected_services": [
+        "shipping"
+      ],
+      "parameters": {
+        "duration_seconds": 115,
+        "intensity": 1
+      },
+      "remediation": "restore-multi-service-cascade",
+      "cleanup": "cleanup-multi-service-cascade",
+      "requires_ui": false
+    }
+  ]
+}
