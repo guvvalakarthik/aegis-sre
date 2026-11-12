@@ -30,7 +30,7 @@ REQUIREMENTS = (
 
 
 def version_from(text: str) -> tuple[int, ...] | None:
-    match = re.search(r"(?:v|version\\s*)?(\\d+)(?:\\.(\\d+))?(?:\\.(\\d+))?", text, re.I)
+    match = re.search(r"(?:v|version\s*)?(\d+)(?:\.(\d+))?(?:\.(\d+))?", text, re.I)
     if not match:
         return None
     return tuple(int(part or 0) for part in match.groups())
