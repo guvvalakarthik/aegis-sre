@@ -94,7 +94,17 @@ class EvidencePackage:
         approval = Approval(contributor, hashlib.sha256(rationale.encode()).hexdigest())
         prior = tuple(item for item in self.approvals if item.contributor != contributor)
         return EvidencePackage(
-            **{**asdict(self), "approvals": prior + (approval,)}
+            package_id=self.package_id,
+            incident_id=self.incident_id,
+            incident_time=self.incident_time,
+            environment=self.environment,
+            package_version=self.package_version,
+            items=self.items,
+            status=self.status,
+            missing_evidence=self.missing_evidence,
+            contradictions=self.contradictions,
+            abstained=self.abstained,
+            approvals=prior + (approval,),
         )
 
     def approved_by(self, contributors: Sequence[str]) -> bool:
