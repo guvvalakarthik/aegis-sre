@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import Any, Callable, Mapping, Protocol
@@ -168,7 +169,15 @@ class IncidentRuntime:
                     break
             started = time.monotonic()
             try:
-                result = spec.handler(arguments)
+                executor = ThreadPoolExecutor(max_workers=1)
+                future = executor.submit(spec.handler, arguments)
+                try:
+                    result = future.result(timeout=timeout_seconds)
+                except FutureTimeoutError as exc:
+                    future.cancel()
+                    raise TimeoutError("tool timeout exceeded") from exc
+                finally:
+                    executor.shutdown(wait=False, cancel_futures=True)
                 if time.monotonic() - started > timeout_seconds:
                     raise TimeoutError("tool timeout exceeded")
                 safe_result = _redact(result)
