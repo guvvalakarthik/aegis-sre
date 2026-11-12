@@ -1,0 +1,23 @@
+# Values intentionally stay small: the upstream chart owns the workload manifests and
+# image catalog. The chart version and application version are pinned by the deploy script.
+opentelemetry-collector:
+  enabled: true
+  mode: deployment
+
+components:
+  frontend:
+    enabled: true
+    service:
+      type: ClusterIP
+
+  load-generator:
+    enabled: true
+
+default:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
