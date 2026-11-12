@@ -34,7 +34,7 @@ class LogTransformerMetadata:
 def mask_tokens(input_ids: Any, attention_mask: Any, *, probability: float, seed: int) -> tuple[Any, Any]:
     import torch
 
-    if input_ids.shape != attention_mask.shape:
+    if not hasattr(input_ids, "shape") or not hasattr(attention_mask, "shape") or input_ids.shape != attention_mask.shape:
         raise ValueError("input IDs and attention mask must have equal shape")
     if not 0.0 < probability < 1.0 or seed < 0:
         raise ValueError("invalid masking configuration")
