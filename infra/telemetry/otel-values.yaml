@@ -1,0 +1,39 @@
+mode: daemonset
+
+image:
+  repository: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-k8s
+  tag: 0.142.0
+
+presets:
+  logsCollection:
+    enabled: true
+  hostMetrics:
+    enabled: true
+  kubernetesAttributes:
+    enabled: true
+  kubernetesEvents:
+    enabled: true
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+service:
+  enabled: true
+
+config:
+  exporters:
+    debug:
+      verbosity: basic
+  service:
+    pipelines:
+      logs:
+        exporters: [debug]
+      metrics:
+        exporters: [debug]
+      traces:
+        exporters: [debug]
