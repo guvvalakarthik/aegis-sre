@@ -39,6 +39,8 @@ def late_fuse(
     """Combine available scores while retaining all raw evidence."""
     if set(scores) != set(available) or not scores:
         raise ValueError("scores and availability must contain the same non-empty modalities")
+    if any(not math.isfinite(value) or not 0.0 <= value <= 1.0 for value in scores.values()):
+        raise ValueError("modality scores must be finite probabilities in [0, 1]")
     weights = weights or {name: 1.0 for name in scores}
     if set(weights) != set(scores) or any(weight < 0 for weight in weights.values()):
         raise ValueError("weights must be non-negative and cover every modality")
@@ -116,8 +118,8 @@ class ModelCard:
     def to_json(self) -> str:
         if not self.name or not self.version or not self.training_data or not self.evaluation_data:
             raise ValueError("model card identity and data lineage are required")
-        if not self.metrics:
-            raise ValueError("model card metrics cannot be empty")
+        if not self.metrics or any(not math.isfinite(value) for value in self.metrics.values()):
+            raise ValueError("model card metrics must be finite and non-empty")
         if self.status not in {"candidate", "approved", "retired"}:
             raise ValueError("invalid model-card status")
         return json.dumps(asdict(self), sort_keys=True, indent=2)
