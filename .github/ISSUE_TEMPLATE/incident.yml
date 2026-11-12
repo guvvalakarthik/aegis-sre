@@ -1,0 +1,45 @@
+name: Incident
+description: Report a reliability or safety incident and its evidence.
+title: "[INCIDENT] "
+labels:
+  - type:incident
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include credentials, tokens, raw customer data, or sensitive payloads.
+  - type: input
+    id: occurred
+    attributes:
+      label: Occurred at
+      placeholder: YYYY-MM-DDThh:mm:ssZ
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact and affected scope
+      description: Describe users, services, environments, and duration.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and timeline
+      description: Link redacted logs, metrics, traces, and event timestamps.
+    validations:
+      required: true
+  - type: textarea
+    id: containment
+    attributes:
+      label: Containment and recovery
+      description: Record safe actions taken, rollback, and current status.
+    validations:
+      required: true
+  - type: textarea
+    id: followup
+    attributes:
+      label: Root cause and follow-up
+      description: List confirmed cause, unknowns, and prevention work.
+    validations:
+      required: true
