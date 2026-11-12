@@ -169,3 +169,26 @@ def save_checkpoint(model: Any, path: str, metadata: CheckpointMetadata) -> None
         "metadata": asdict(metadata),
         "state_dict": model.state_dict(),
     }, path)
+
+
+def load_checkpoint(path: str, *, map_location: str = "cpu") -> tuple[Any, CheckpointMetadata]:
+    import torch
+
+    payload = torch.load(path, map_location=map_location, weights_only=False)
+    if payload.get("schema_version") != "log-transformer/v1":
+        raise ValueError("unsupported or missing checkpoint schema")
+    raw = payload["metadata"]
+    config = TransformerConfig(**raw["model_config"])
+    metadata = CheckpointMetadata(
+        schema_version=payload["schema_version"],
+        model_config=config,
+        parser_version=raw["parser_version"],
+        vocabulary_version=raw["vocabulary_version"],
+        dataset_version=raw["dataset_version"],
+        split_hash=raw["split_hash"],
+        seed=raw["seed"],
+    )
+    model = build_transformer(config)
+    model.load_state_dict(payload["state_dict"])
+    model.eval()
+    return model, metadata
