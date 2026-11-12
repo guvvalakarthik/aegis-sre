@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from dataclasses import asdict, dataclass
 from enum import StrEnum
 from typing import Sequence
@@ -47,8 +48,8 @@ class ScenarioEvidence:
             raise ValueError("scenario evidence identity is required")
         if not self.clean_environment:
             raise ValueError("scenario evidence must come from a clean environment")
-        if any(value < 0 for value in self.metrics.values()):
-            raise ValueError("scenario metrics must be non-negative")
+        if any(not math.isfinite(value) or value < 0 for value in self.metrics.values()):
+            raise ValueError("scenario metrics must be finite and non-negative")
         if self.status == ReproductionStatus.PASSED and not self.ground_truth_match:
             raise ValueError("passed reproduction must match ground truth")
         if not self.quality_passed and not self.limitations:
