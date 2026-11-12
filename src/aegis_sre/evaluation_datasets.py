@@ -6,6 +6,7 @@ import hashlib
 import json
 from dataclasses import dataclass, asdict
 from enum import StrEnum
+from types import MappingProxyType
 from typing import Mapping, Sequence
 
 
@@ -97,7 +98,7 @@ def freeze_dataset(
 ) -> FrozenDataset:
     split_definition.validate()
     card.validate()
-    immutable_rows = tuple(dict(row) for row in rows)
+    immutable_rows = tuple(MappingProxyType(dict(row)) for row in rows)
     if not immutable_rows:
         raise ValueError("cannot freeze an empty dataset")
     ids = [str(row.get("row_id", "")) for row in immutable_rows]
@@ -110,7 +111,16 @@ def freeze_dataset(
         card=card, pipeline_version=pipeline_version,
     )
     dataset_hash = provisional.content_hash()
-    frozen = FrozenDataset(**{**asdict(provisional), "dataset_hash": dataset_hash})
+    frozen = FrozenDataset(
+        dataset_hash=dataset_hash,
+        dataset_version=provisional.dataset_version,
+        rows=provisional.rows,
+        split_definition=provisional.split_definition,
+        splits=provisional.splits,
+        provenance=provisional.provenance,
+        card=provisional.card,
+        pipeline_version=provisional.pipeline_version,
+    )
     frozen.validate()
     return frozen
 
