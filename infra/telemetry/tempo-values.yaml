@@ -1,0 +1,27 @@
+tempo:
+  reportingEnabled: false
+  retention: 168h
+  storage:
+    trace:
+      backend: local
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+
+tempoQuery:
+  enabled: false
+
+traces:
+  otlp:
+    http:
+      enabled: true
+    grpc:
+      enabled: true
+
+persistence:
+  enabled: true
+  size: 10Gi
