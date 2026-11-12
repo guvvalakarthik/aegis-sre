@@ -46,3 +46,37 @@ def test_transformer_has_embeddings_and_logits() -> None:
     mask = torch.ones((2, 4), dtype=torch.bool)
     assert model(ids, mask).shape == (2, 3)
     assert model.embedding(ids, mask).shape == (2, 128)
+
+
+def test_checkpoint_reload_preserves_model_output(tmp_path) -> None:
+    torch = pytest.importorskip("torch")
+    from aegis_sre.log_transformer import (
+        CheckpointMetadata,
+        TransformerConfig,
+        build_transformer,
+        load_checkpoint,
+        save_checkpoint,
+    )
+
+    config = TransformerConfig(vocabulary_size=10, classes=3, max_length=4)
+    model = build_transformer(config).eval()
+    metadata = CheckpointMetadata(
+        schema_version="log-transformer/v1",
+        model_config=config,
+        parser_version="log-parser/v1",
+        vocabulary_version="log-vocab/v1",
+        dataset_version="dataset-v1",
+        split_hash="split-hash",
+        seed=42,
+    )
+    ids = torch.ones((2, 4), dtype=torch.long)
+    mask = torch.ones((2, 4), dtype=torch.bool)
+    with torch.no_grad():
+        expected = model(ids, mask)
+    path = tmp_path / "model.pt"
+    save_checkpoint(model, str(path), metadata)
+    restored, restored_metadata = load_checkpoint(str(path))
+    with torch.no_grad():
+        actual = restored(ids, mask)
+    assert restored_metadata == metadata
+    assert torch.allclose(expected, actual)
