@@ -112,6 +112,8 @@ def train_reconstruction(
     if config.epochs < 1 or config.patience < 1 or config.learning_rate <= 0:
         raise ValueError("invalid training configuration")
     seed_runtime(config.seed)
+    train_batches = tuple(train_batches)
+    validation_batches = tuple(validation_batches)
     optimizer = torch.optim.Adam(model.parameters(), lr=config.learning_rate)
     loss_fn = nn.MSELoss()
     train_losses: list[float] = []
