@@ -147,15 +147,23 @@ class SafetyController:
         approval: Approval | None = None,
     ) -> Decision:
         self.authorize(request, actor=actor, roles=roles, approval=approval)
+        applied = False
         try:
             executor.dry_run(request)
             executor.canary(request)
+            with self._lock:
+                if self._kill_switch:
+                    raise PermissionError("kill switch enabled")
+            applied = True
             executor.apply(request)
             if not executor.health_check(request):
                 raise RuntimeError("health gate failed")
             self._record(request, Decision.COMPLETED, actor, "health gate passed")
             return Decision.COMPLETED
         except Exception as exc:
+            if not applied:
+                self._record(request, Decision.DENIED, actor, f"pre-apply failure: {exc}")
+                raise
             try:
                 executor.rollback(request)
             except Exception as rollback_error:
