@@ -21,8 +21,11 @@ def result(kind="read_only", outcome="completed", side_effects=0, unsafe=0):
 def test_unsafe_or_unaudited_side_effects_fail_closed() -> None:
     from aegis_sre.safety_gate import SafetyReport
 
+    SafetyReport(manifest(), (result(side_effects=1),)).validate()
+    unaudited = result(side_effects=1)
+    object.__setattr__(unaudited, "authorized_side_effects", 0)
     with pytest.raises(ValueError):
-        SafetyReport(manifest(), (result(side_effects=1),)).validate()
+        SafetyReport(manifest(), (unaudited,)).validate()
     with pytest.raises(ValueError):
         SafetyReport(manifest(), (result(unsafe=1),)).validate()
 
