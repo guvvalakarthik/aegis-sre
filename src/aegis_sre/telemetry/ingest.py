@@ -22,7 +22,7 @@ from aegis_sre.telemetry.contracts import (
 
 _RECORD_TYPES = (LogRecord, MetricRecord, TraceRecord, DeploymentChange, KubernetesEvent)
 _SENSITIVE_KEY = re.compile(r"(password|passwd|secret|token|api[_-]?key|authorization|cookie)", re.I)
-_SENSITIVE_VALUE = re.compile(r"(?i)(bearer\\s+|gh[pousr]_)[A-Za-z0-9._-]+")
+_SENSITIVE_VALUE = re.compile(r"(?i)(bearer\s+|gh[pousr]_)[A-Za-z0-9._-]+")
 
 
 class QuarantineRecord:
@@ -72,7 +72,7 @@ class InMemoryIngestStore:
 
     def __init__(self) -> None:
         self.records: dict[str, TelemetryRecord] = {}
-        self.quarantine: list[QuarantineRecord] = {}
+        self.quarantine: list[QuarantineRecord] = []
 
     def ingest(self, payload: Mapping[str, Any]) -> TelemetryRecord | None:
         cleaned, was_redacted = redact(payload)
